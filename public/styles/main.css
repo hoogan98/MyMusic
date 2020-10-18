@@ -10,3 +10,18 @@ body {
 .page-container {
     margin-top: 75px;
 }
+
+body {
+    background-color: #FFDAB9;
+}
+
+#loginArea {
+    width: 33%;
+}
+
+#headphoneClipart {
+    background-color: #FFDAB9;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
