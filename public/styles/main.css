@@ -25,3 +25,46 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+#modeSwitch {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}
+
+#songQueue {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+}
+
+#songQueue p {
+    text-align: right;
+    color: #858181;
+}
+
+#playback {
+    width: 25%;
+    margin-top: 20%;
+    text-align: center;
+}
+
+#playback button {
+    background-color: #aea8a8;
+}
+
+#playback p {
+    font-size: 1.1em;
+}
+
+#playback img {
+    margin-bottom: 10px;
+}
+
+.largeQueue {
+    font-size: 1.75em;
+}
+
+.smallQueue {
+    font-size: 1.1em;
+}
