@@ -11,7 +11,7 @@ body {
     margin-top: 75px;
 }
 
-body {
+.main-bg {
     background-color: #FFDAB9;
 }
 
@@ -67,4 +67,17 @@ body {
 
 .smallQueue {
     font-size: 1.1em;
+}
+
+#mainPanel {
+    border-radius: 25px;
+    background-color: #F5EAEA;
+}
+
+.controlPanel {
+    background-color: #F2F2F2;
+}
+
+.controlPanel button {
+    background-color: #FFDAB9;
 }
