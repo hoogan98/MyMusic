@@ -1,15 +1,17 @@
 var rhit = rhit || {};
 
-
 //this is set up for localhost stuff, switch it when you actually deploy
+rhit.baseLink = "http://localhost:5000/";
+rhit.PAGE_HOLDER_ID = "pageHolder";
+
 rhit.swapPage = function(href) {
 	var req = new XMLHttpRequest();
 	req.open("GET",
-			 "http://localhost:5000/" + href,
+			 rhit.baseLink + href,
 			 false);
 	req.send(null);
 	if (req.status == 200) {
-		document.getElementById("pageHolder").innerHTML = req.responseText;
+		document.getElementById(rhit.PAGE_HOLDER_ID).innerHTML = req.responseText;
 		rhit.setupHistoryClicks();
 		return true;
 	  }
@@ -25,12 +27,9 @@ rhit.addClicker = function(link) {
 }
 
 rhit.setupHistoryClicks = function() {
-	//make this a class instead of an id, so we can have many of these page changers passed through. make sure they all have a data-link value though
-	//let loginBtn = document.getElementById("login");
+	//make sure all items of class historyPusher have a "data-link" attribute to an html page with all the stuff they want thrown onto the main page
 	let historyPushers = document.querySelectorAll(".historyPusher");
 	historyPushers.forEach(rhit.addClicker);
-	//rhit.addClicker(document.getElementById("login"));
-	//console.log(loginBtn.dataset.link);
 }
 
 rhit.main = function () {
