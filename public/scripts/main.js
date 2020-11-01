@@ -27,7 +27,9 @@ rhit.addClicker = function(link) {
 rhit.setupHistoryClicks = function() {
 	//make this a class instead of an id, so we can have many of these page changers passed through. make sure they all have a data-link value though
 	//let loginBtn = document.getElementById("login");
-	rhit.addClicker(document.getElementById("login"));
+	let historyPushers = document.querySelectorAll(".historyPusher");
+	historyPushers.forEach(rhit.addClicker);
+	//rhit.addClicker(document.getElementById("login"));
 	//console.log(loginBtn.dataset.link);
 }
 
