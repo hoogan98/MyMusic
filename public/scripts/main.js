@@ -1,48 +1,48 @@
 var rhit = rhit || {};
 
 //this is set up for localhost stuff, switch it when you actually deploy
-rhit.baseLink = "http://localhost:5000/";
+rhit.baseLink = "https://hartmagjzhaoy9final.web.app";
 rhit.PAGE_HOLDER_ID = "pageHolder";
 rhit.player = null;
 
 // this function gets called when API is ready to use
 //FOR ANY OF THIS TO WORK THE EMBED URL NEEDS TO HAVE enablejsapi=1 ADDED AS A URL PARAM
 function onYouTubePlayerAPIReady() {
-  // create the global player from the specific iframe (#video)
-  console.log("youtubeAPI created");
-  player = new YT.Player('video', {
-    events: {
-      // call this function when player is ready to use
-      'onReady': onPlayerReady
-    }
-  });
+	// create the global player from the specific iframe (#video)
+	console.log("youtubeAPI created");
+	player = new YT.Player('video', {
+		events: {
+			// call this function when player is ready to use
+			'onReady': onPlayerReady
+		}
+	});
 }
 
 function onPlayerReady(event) {
 	console.log("onPlayerREady");
-  
+
 	// bind events
 	var playButton = document.getElementById("playMusic");
-	playButton.addEventListener("click", function() {
+	playButton.addEventListener("click", function () {
 		document.querySelector("#pauseMusic").style.display = "inline";
 		document.querySelector("#playMusic").style.display = "none";
-	  	player.playVideo();
+		player.playVideo();
 	});
-	
+
 	var pauseButton = document.getElementById("pauseMusic");
-	pauseButton.addEventListener("click", function() {
+	pauseButton.addEventListener("click", function () {
 		document.querySelector("#pauseMusic").style.display = "none";
 		document.querySelector("#playMusic").style.display = "inline";
-	  player.pauseVideo();
+		player.pauseVideo();
 	});
-	
+
 }
 
-rhit.realignCheck = function() {
-	if (document.querySelector("#"+rhit.PAGE_HOLDER_ID+" playback")) {
-		let badElem = document.querySelector("#"+rhit.PAGE_HOLDER_ID+" playback");
-		badElem.parentNode.removeChild(badElem);
-	}
+rhit.realignCheck = function () {
+	// if (document.querySelector("#" + rhit.PAGE_HOLDER_ID + " playback")) {
+	// 	let badElem = document.querySelector("#" + rhit.PAGE_HOLDER_ID + " playback");
+	// 	badElem.parentNode.removeChild(badElem);
+	// }
 
 	if (document.querySelector("#playmode")) {
 		console.log("adding center");
@@ -55,30 +55,30 @@ rhit.realignCheck = function() {
 	}
 };
 
-rhit.swapPage = function(href) {
+rhit.swapPage = function (href) {
 	var req = new XMLHttpRequest();
 	req.open("GET",
-			 rhit.baseLink + href,
-			 false);
+		"https://hartmagjzhaoy9final.web.app" + href,
+		false);
 	req.send(null);
 	if (req.status == 200) {
 		document.getElementById(rhit.PAGE_HOLDER_ID).innerHTML = req.responseText;
 		rhit.realignCheck();
 		rhit.setupHistoryClicks();
 		return true;
-	  }
-	  return false;
+	}
+	return false;
 };
 
-rhit.addClicker = function(link) {
-	link.addEventListener("click", function(e) {
+rhit.addClicker = function (link) {
+	link.addEventListener("click", function (e) {
 		rhit.swapPage(link.dataset.link);
 		history.pushState(null, null, link.dataset.link);
 		e.preventDefault();
 	}, false);
 };
 
-rhit.setupHistoryClicks = function() {
+rhit.setupHistoryClicks = function () {
 	//make sure all items of class historyPusher have a "data-link" attribute to an html page with all the stuff they want thrown onto the main page
 	let historyPushers = document.querySelectorAll(".historyPusher");
 	historyPushers.forEach(rhit.addClicker);
@@ -89,8 +89,16 @@ rhit.main = function () {
 
 	rhit.setupHistoryClicks();
 
-	window.addEventListener("popstate", function(e) {
-		rhit.swapPage(location.pathname);
+	window.addEventListener("popstate", function (e) {
+		if (location.pathname == "/playmode.html") {
+			rhit.swapPage("playmodeB.html")
+		} else if (location.pathname == "/" || location.pathname == "index.html") {
+			window.location.href = "/";
+		}
+		else {
+			rhit.swapPage(location.pathname);
+		}
+		
 	});
 
 	//for testing purposes
@@ -100,7 +108,7 @@ rhit.main = function () {
 			rhit.setupHistoryClicks();
 		};
 	}
-	
+
 };
 
 rhit.main();
