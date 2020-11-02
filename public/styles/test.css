@@ -1,0 +1,13 @@
+#video {
+    display:none;
+}
+
+#playback {
+    right: 0;
+    top: 5vh;
+    margin: auto;
+}
+
+#pauseMusic {
+    display:none;
+}
