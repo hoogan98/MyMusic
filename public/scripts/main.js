@@ -1,7 +1,7 @@
 var rhit = rhit || {};
 
 //this is set up for localhost stuff, switch it when you actually deploy
-rhit.baseLink = "https://hartmagjzhaoy9final.web.app";
+rhit.baseLink = "https://hartmagjzhaoy9final.web.app/";
 rhit.PAGE_HOLDER_ID = "pageHolder";
 rhit.player = null;
 
@@ -18,6 +18,7 @@ function onYouTubePlayerAPIReady() {
 	});
 }
 
+//assigns buttons to youtube api video
 function onPlayerReady(event) {
 	console.log("onPlayerREady");
 
@@ -58,7 +59,7 @@ rhit.realignCheck = function () {
 rhit.swapPage = function (href) {
 	var req = new XMLHttpRequest();
 	req.open("GET",
-		"https://hartmagjzhaoy9final.web.app" + href,
+		rhit.baseLink + href,
 		false);
 	req.send(null);
 	if (req.status == 200) {
